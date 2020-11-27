@@ -36,6 +36,7 @@ import {
 import noProfileImg from "../../images/undraw_No_data_re_kwbl.svg";
 
 const MainSec = (data) => {
+  console.log(data);
   let education, schools;
 
   const { data: details, user } = data;
@@ -93,8 +94,10 @@ const MainSec = (data) => {
   const handleChange = (e) => {
     e.persist();
     const { name, value } = e.target;
+    console.log(name);
 
     const errorMessage = validateProperty(e.target);
+    console.log(errorMessage);
 
     if (errorMessage) errors[name] = errorMessage;
     else delete errors[name];
