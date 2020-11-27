@@ -14,12 +14,12 @@ import {
 } from "../../components/homeSection/homeSection.elements";
 import { Button, Container } from "../../globalStyles";
 
-const HomeSection = ({ buttonLabel }) => {
-  const [value, setValue] = useState({ name: "" });
+const HomeSection = (props) => {
+  const [value, setValue] = useState({ username: "" });
   const [errors, setErrors] = useState({ errors: "" });
 
   const schema = {
-    name: Joi.string().required().label("Name"),
+    username: Joi.string().required().label("Name"),
   };
 
   const validate = () => {
@@ -65,7 +65,8 @@ const HomeSection = ({ buttonLabel }) => {
     setErrors({ ...errors, [errors]: errors || {} });
     if (errors) return;
 
-    console.log(value);
+    // Navigate to /MainPage
+    props.history.replace(`/Main/${value.username}`);
   };
 
   return (
@@ -80,19 +81,17 @@ const HomeSection = ({ buttonLabel }) => {
             Type your name and click 'Enter' below to begin
           </HomeSubText>
           <Form onSubmit={handleSubmit}>
-            {errors.name && <ErrorAlert>{errors.name}</ErrorAlert>}
+            {errors.username && <ErrorAlert>{errors.username}</ErrorAlert>}
             <FormInput
-              name="name"
+              name="username"
               type="text"
               placeholder="Your Name"
-              value={value.name}
+              value={value.username}
               onChange={handleChange}
             />
-            <Link to={`/Main/${value.name}`}>
-              <Button big fontBig primary>
-                {buttonLabel}
-              </Button>
-            </Link>
+            <Button big fontBig primary>
+              {`Enter`}
+            </Button>
           </Form>
         </HomeIntroduction>
       </HomeContainer>
