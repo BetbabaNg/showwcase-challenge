@@ -16,6 +16,7 @@ import { Button, Container } from "../../globalStyles";
 
 const HomeSection = (props) => {
   const [value, setValue] = useState({ username: "" });
+  const [status, setStatus] = useState("");
   const [errors, setErrors] = useState({ errors: "" });
 
   const schema = {
